@@ -1,0 +1,21 @@
+/.vs/
+/.idea/
+**/.vs/
+**/.idea/
+bin/
+obj/
+**/*csproj.user
+**/*DotSettings.user
+
+# Swift
+.DS_Store
+Carthage
+**/xcuserdata
+Pods
+.idea
+report.xml
+*.ipa
+chatapp-ios-prod.app.dSYM.zip
+build
+Products
+DerivedData

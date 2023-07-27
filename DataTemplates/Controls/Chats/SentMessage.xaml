@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<chatControls:MessageControl xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chatControls="using:DataTemplates.Controls.Chats"
+             xmlns:chatViews="using:DataTemplates"
+             x:Class="DataTemplates.Controls.Chats.SentMessage">
+    <Grid  x:Name="OuterGrid" ColumnDefinitions="56,*" Margin="0,3,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
+        <SwipeView Grid.Column="1" Threshold="50">
+            <SwipeView.RightItems>
+                <SwipeItems Mode="Execute">
+                   <SwipeItemView IsVisible="{Binding HasSent}"
+                        CommandParameter="{Binding .}">
+                    </SwipeItemView>
+                </SwipeItems>
+            </SwipeView.RightItems>    
+        <Grid x:Name="ContainingGrid" HorizontalOptions="End" RowDefinitions="Auto,7,Auto" Margin="0,3,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
+   
+            <Frame x:Name="MessageFrame" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFEAEEF3" BorderColor="#FFEAEEF3" CornerRadius="8" HasShadow="False" Padding="10,7" Margin="0, 0, 12, 0" HorizontalOptions="End" >
+                <Grid RowSpacing="0" ColumnSpacing="0" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
+                        <Image Grid.Row="1" Grid.Column="0" 
+                            Source="{Binding ImageUrl}" 
+                            Aspect="AspectFill"
+                            HeightRequest="60" 
+                            WidthRequest="60" />
+                </Grid>
+            </Frame>
+        </Grid>
+        </SwipeView>
+        <Grid.GestureRecognizers>
+            <TapGestureRecognizer />
+        </Grid.GestureRecognizers>
+    </Grid>
+</chatControls:MessageControl>
+

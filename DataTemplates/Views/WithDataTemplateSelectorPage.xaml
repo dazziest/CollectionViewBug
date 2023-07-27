@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chatControls="using:DataTemplates.Controls.Chats"
+             xmlns:local="clr-namespace:DataTemplates"
+             x:Class="DataTemplates.WithDataTemplateSelectorPage"
+             x:Name="RoomPage"
+             Title="WithDataTemplateSelectorPage">
+    <Grid x:Name="KeyboardView" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand" 
+                            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="44" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        <Label Text="CollectionView with a DataTemplateSelector"
+               FontAttributes="Bold" Grid.Row="0"
+               HorizontalOptions="Center" />
+        <CollectionView x:Name="collectionView" Grid.Row="1"
+                        ItemsSource="{Binding Animals}"
+                        ItemSizingStrategy="MeasureAllItems"
+                        IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding Name}"
+                           BackgroundColor="LightGray"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <chatControls:MessageDataTemplateSelector />
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
