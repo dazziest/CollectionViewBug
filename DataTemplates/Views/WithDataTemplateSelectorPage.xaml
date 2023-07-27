@@ -6,16 +6,15 @@
              x:Class="DataTemplates.WithDataTemplateSelectorPage"
              x:Name="RoomPage"
              Title="WithDataTemplateSelectorPage">
-    <Grid x:Name="KeyboardView" 
+    <StackLayout x:Name="KeyboardView" 
                             HorizontalOptions="FillAndExpand" 
-                            VerticalOptions="FillAndExpand" 
-                            RowSpacing="0">
-            <Grid.RowDefinitions>
+                            VerticalOptions="FillAndExpand">
+            <!--<Grid.RowDefinitions>
                 <RowDefinition Height="44" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-        <Label Text="CollectionView with a DataTemplateSelector"
+            </Grid.RowDefinitions>-->
+        <Label Text="CollectionView with complex layout"
                FontAttributes="Bold" Grid.Row="0"
                HorizontalOptions="Center" />
         <CollectionView x:Name="collectionView" Grid.Row="1"
@@ -23,16 +22,32 @@
                         ItemSizingStrategy="MeasureAllItems"
                         IsGrouped="True">
             <CollectionView.GroupHeaderTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding Name}"
-                           BackgroundColor="LightGray"
-                           FontSize="20"
-                           FontAttributes="Bold" />
-                </DataTemplate>
-            </CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                        <Grid HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      BackgroundColor="#FFFFFFFF"
+                                      RowSpacing="0"
+                                      ColumnSpacing="0"
+                                      >
+                                    <Frame BackgroundColor="#FFEAEEF3"
+                                           CornerRadius="8" Padding="0" Margin="0,10,0,0"
+                                               HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Frame BackgroundColor="#FFFFFFFF"
+                                               CornerRadius="8" Padding="10,4" Margin="1,1,1,2"
+                                               HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label Margin="0" Padding="0"
+                                                HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Style="{StaticResource MessageDateLabel}"
+                                                   Text="{Binding Name}" />
+                                        </Frame>
+                                    </Frame>
+                                </Grid>
+                      </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
             <CollectionView.ItemTemplate>
                 <chatControls:MessageDataTemplateSelector />
             </CollectionView.ItemTemplate>
         </CollectionView>
-    </Grid>
+    </StackLayout>
 </ContentPage>

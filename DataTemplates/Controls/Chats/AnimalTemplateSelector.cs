@@ -3,11 +3,11 @@ using DataTemplates.Models;
 
 namespace DataTemplates.Controls.Chats;
 
-public class MessageDataTemplateSelector : DataTemplateSelector
+public class AnimalTemplateSelector: DataTemplateSelector
 {
-    public DataTemplate ValidTemplate = new DataTemplate(() => new ReceivedMessage(new MessageText()));
+    public DataTemplate ValidTemplate { get; set; }
 
-    public DataTemplate InvalidTemplate = new DataTemplate(() => new SentMessage(new MessageText()));
+    public DataTemplate InvalidTemplate { get; set; }
 
     protected override DataTemplate OnSelectTemplate(object item, BindableObject container)
     {

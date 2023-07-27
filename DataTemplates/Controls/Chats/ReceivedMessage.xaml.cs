@@ -6,4 +6,11 @@ public partial class ReceivedMessage : MessageControl
 	{
 		InitializeComponent();
 	}
+
+    public ReceivedMessage(ContentView messageContent)
+    {
+        MessageContent = messageContent;
+
+        InitializeComponent();
+    }
 }

@@ -9,6 +9,69 @@
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="NewMessageSeparatorLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="#12BBAF" />
+                <Setter Property="FontSize"       Value="12" />
+                <Setter Property="Padding" Value="8,0,8,0" />
+                <Setter Property="FontAttributes" Value="None" />
+                <Setter Property="FontFamily"     Value="SFProTextRegular" />
+                <Setter Property="BackgroundColor" Value="#FFFFFF" />
+                <Setter Property="CharacterSpacing" Value="-0.19" />
+            </Style>
+            <Style x:Key="ReplyBodyLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF839FB1" />
+                <!-- RGB(8,64,100)"/> -->
+                <Setter Property="FontSize"        Value="Body" /><!-- Value="Caption" />-->
+                <Setter Property="FontAttributes"  Value="None" />
+                <Setter Property="TextDecorations" Value="None" />
+                <Setter Property="FontFamily"      Value="SFProTextRegular" />
+                <!--<Setter Property="CharacterSpacing" Value="-0.19" />-->
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="VerticalOptions"       Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="MessageSenderLabel" TargetType="Label">
+                <!-- RGB(8,64,100)"/> -->
+                <Setter Property="FontSize"        Value="Caption" />
+                <Setter Property="FontAttributes"  Value="Bold" />
+                <Setter Property="TextDecorations" Value="None" />
+                <Setter Property="FontFamily"      Value="SFProTextBold" />
+                <Setter Property="CharacterSpacing" Value="-0.06" />
+                <!--<Setter Property="Margin" Value="10,9,10,0" />-->
+                <Setter Property="VerticalOptions"       Value="Start" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="LineBreakMode" Value="WordWrap"/>
+            </Style>
+            <Style x:Key="ForwardedLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF12BBAF" />
+                <!-- RGB(8,64,100)"/> -->
+                <Setter Property="FontSize"        Value="Caption" />
+                <Setter Property="FontAttributes"  Value="Italic" />
+                <Setter Property="TextDecorations" Value="None" />
+                <Setter Property="FontFamily"      Value="SFProTextRegular" />
+                <Setter Property="CharacterSpacing" Value="-0.06" />
+                <Setter Property="Margin" Value="0" />
+                <Setter Property="VerticalOptions"       Value="CenterAndExpand" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
+            <Style x:Key="MessageDateLabel" TargetType="Label">
+                <Setter Property="TextColor" Value="#FF839FB1" />
+                <!-- RGB(131,159,177)"/> -->
+                <Setter Property="FontSize"        Value="Micro" /><!-- Value="Caption" />-->
+                <Setter Property="FontAttributes"  Value="None" />
+                <Setter Property="TextDecorations" Value="None" />
+                <Setter Property="FontFamily"      Value="SFProTextRegular" />
+                <Setter Property="CharacterSpacing" Value="-0.06" />
+                <Setter Property="Margin" Value="8,3,0,0" />
+                <Setter Property="VerticalOptions"       Value="Center" />
+                <Setter Property="HorizontalOptions"       Value="End" />
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+            </Style>
         </ResourceDictionary>
+
+        
     </Application.Resources>
 </Application>

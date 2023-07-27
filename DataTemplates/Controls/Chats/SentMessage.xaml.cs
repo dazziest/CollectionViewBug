@@ -6,4 +6,11 @@ public partial class SentMessage : MessageControl
 	{
 		InitializeComponent();
 	}
+
+    public SentMessage(ContentView messageContent)
+    {
+        MessageContent = messageContent;
+
+        InitializeComponent();
+    }
 }

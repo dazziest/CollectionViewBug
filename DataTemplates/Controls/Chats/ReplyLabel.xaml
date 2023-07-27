@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataTemplates.Controls.Chats.ReplyLabel">
+    <Grid>
+        <Label MaxLines="3" Style="{StaticResource ReplyBodyLabel}" IsVisible="{Binding IsReplyAvailable}"><!-- TODO add back in after MAUI fix is in: LineBreakMode="TailTruncation" -->
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding ParentMessageSender.SenderName}" FontAttributes="Bold"/>
+                            <Span Text=": " FontAttributes="Bold"/>
+                            <Span Text="{Binding ParentMessageBody}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+         </Label>
+             <Label MaxLines="3" Style="{StaticResource ReplyBodyLabel}" IsVisible="{Binding IsReplyAvailable}"><!-- TODO add back in after MAUI fix is in, LineBreakMode="TailTruncation"   -->
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{Binding ParentMessageSender.SenderName}" FontAttributes="Bold"/>
+                            <Span Text=": " FontAttributes="Bold"/>
+                            <Span Text="This message has been automatically deleted" FontAttributes="Italic"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+         </Label>
+            </Grid>
+</ContentView>
+

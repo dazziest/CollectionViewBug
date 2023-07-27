@@ -1,12 +1,21 @@
 ﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DataTemplates"
+             xmlns:views="clr-namespace:DataTemplates.Views"
              x:Class="DataTemplates.MainPage"
              Title="Data template demos">
     <TableView Intent="Menu">
         <TableRoot>
             <TableSection Title="Data templates">
-                <TextCell Text="List with a data template selector"
+                <TextCell Text="List inside grid"
+                          Detail="Inline data template"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type local:WithDataTemplatePage}" />
+                <TextCell Text="List inside stack layout"
+                          Detail="Inline data template"
+                          Command="{Binding NavigateCommand}"
+                          CommandParameter="{x:Type views:WithDataTemplateStacklayout}" />
+                <TextCell Text="List inside stacklayout with complex layout"
                           Detail="Data templates defined as resources"
                           Command="{Binding NavigateCommand}"
                           CommandParameter="{x:Type local:WithDataTemplateSelectorPage}" />

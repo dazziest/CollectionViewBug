@@ -3,32 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:chatControls="using:DataTemplates.Controls.Chats"
              xmlns:chatViews="using:DataTemplates"
+             x:Name="SentMessageView"
              x:Class="DataTemplates.Controls.Chats.SentMessage">
     <Grid  x:Name="OuterGrid" ColumnDefinitions="56,*" Margin="0,3,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
-        <SwipeView Grid.Column="1" Threshold="50">
-            <SwipeView.RightItems>
+        <SwipeView Grid.Column="1" Threshold="50" BackgroundColor="{Binding IsSelected, Source={Reference SentMessageView}}">
+            <SwipeView.LeftItems>
                 <SwipeItems Mode="Execute">
                    <SwipeItemView IsVisible="{Binding HasSent}"
-                        CommandParameter="{Binding .}">
+                        CommandParameter="{Binding .}"
+                        Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:WithDataTemplateSelectorPage}}, Path=MessageReplyCommand}">
+                        <Image Source="icon_reply.png"  VerticalOptions="Center" HeightRequest="28" WidthRequest="28"/>
                     </SwipeItemView>
                 </SwipeItems>
-            </SwipeView.RightItems>    
+            </SwipeView.LeftItems>    
         <Grid x:Name="ContainingGrid" HorizontalOptions="End" RowDefinitions="Auto,7,Auto" Margin="0,3,0,0" RowSpacing="0" ColumnSpacing="0" BackgroundColor="Transparent">
-   
-            <Frame x:Name="MessageFrame" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFEAEEF3" BorderColor="#FFEAEEF3" CornerRadius="8" HasShadow="False" Padding="10,7" Margin="0, 0, 12, 0" HorizontalOptions="End" >
-                <Grid RowSpacing="0" ColumnSpacing="0" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto">
-                        <Image Grid.Row="1" Grid.Column="0" 
-                            Source="{Binding ImageUrl}" 
-                            Aspect="AspectFill"
-                            HeightRequest="60" 
-                            WidthRequest="60" />
+            <!-- xct:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:RoomPage}}, Path=NavigateToParentMessageIdCommand}" xct:TouchEffect.CommandParameter="{Binding Message.ParentMessageId}" -->
+                <Frame x:Name="ReplyFrame" IsVisible="{Binding IsReply}" Grid.Row="0" Grid.RowSpan="2" VerticalOptions="Start" HorizontalOptions="Fill" BackgroundColor="#FFFFFFFF" BorderColor="#FFEAEEF3" CornerRadius="8" HasShadow="False" Padding="10,7,10,14" Margin="25, 0, 12, 0" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Buttons="Secondary" Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:WithDataTemplateSelectorPage}}, Path=NavigateToParentMessageIdCommand}" CommandParameter="{Binding Message.ParentMessageId}"/>
+                        <TapGestureRecognizer Buttons="Primary" Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:WithDataTemplateSelectorPage}}, Path=NavigateToParentMessageIdCommand}" CommandParameter="{Binding Message.ParentMessageId}"/>
+                        
+                    </Frame.GestureRecognizers>
+                <chatControls:ReplyLabel />
+            </Frame>
+
+            <!-- xct:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:RoomPage}}, Path=MessageActionCommand}" xct:TouchEffect.CommandParameter="{Binding}" xct:TouchEffect.LongPressCommand="{Binding Source={RelativeSource AncestorType={x:Type chatViews:RoomPage}}, Path=MessageActionMenuCommand}" xct:TouchEffect.LongPressCommandParameter="{Binding}" xct:TouchEffect.LongPressDuration="500" -->
+                <Frame x:Name="MessageFrame" Grid.Row="1" Grid.RowSpan="2" BackgroundColor="#FFEAEEF3" BorderColor="#FFEAEEF3" CornerRadius="8" HasShadow="False" Padding="10,7" Margin="0, 0, 12, 0" HorizontalOptions="End" >
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Buttons="Primary" Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:WithDataTemplateSelectorPage}}, Path=MessageActionCommand}" CommandParameter="{Binding}"/>
+                    </Frame.GestureRecognizers>
+                <Grid RowSpacing="0" ColumnSpacing="0" ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto"><!--<Grid RowSpacing="0" ColumnSpacing="0" ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto"> -->
+                    <Label x:Name="ForwardedLabel" Grid.Row="0" Style="{StaticResource ForwardedLabel}" Text="Forwarded" IsVisible="{Binding IsForwarded}"/>
+                    <ContentView Grid.Row="1" Grid.Column="0" x:Name="MessageBody" Content="{Binding MessageContent, Source={Reference SentMessageView}}"/>
+                    <Grid Grid.Row="2" Grid.Column="0" x:Name="TimeStack" RowSpacing="0" ColumnSpacing="4" HorizontalOptions="End" ColumnDefinitions="Auto,15">
+                        <Label Grid.Column="0" Text="{Binding DisplayDate}" Style="{StaticResource MessageDateLabel}" />
+                        <chatControls:MessageStatusIcon Grid.Column="1" Margin="0,3,0,0" />
+                    </Grid>
                 </Grid>
             </Frame>
         </Grid>
-        </SwipeView>
-        <Grid.GestureRecognizers>
-            <TapGestureRecognizer />
-        </Grid.GestureRecognizers>
-    </Grid>
+            </SwipeView>
+            <!-- xct:TouchEffect.Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:RoomPage}}, Path=MessageTapCommand}"-->
+            <!--<BoxView BackgroundColor="Transparent" Opacity="0" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1" Margin="0,0,0,0" />   -->
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type chatViews:WithDataTemplateSelectorPage}}, Path=MessageTapCommand}"/>
+                </Grid.GestureRecognizers>
+            </Grid>
 </chatControls:MessageControl>
 

@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chatControls="using:DataTemplates.Controls.Chats"
+             xmlns:local="clr-namespace:DataTemplates"
+             x:Class="DataTemplates.Views.WithDataTemplateStacklayout"
+             Title="With a Data Template"
+             IconImageSource="xaml.png">
+    <ContentPage.Resources>
+        <DataTemplate x:Key="AsianAnimalTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}"
+                       TextColor="Blue"
+                       FontAttributes="Bold" />
+                <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Location}"
+                       TextColor="CadetBlue"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+        <DataTemplate x:Key="AfricaAnimalTemplate">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Image Grid.RowSpan="2" 
+                       Source="{Binding ImageUrl}" 
+                       Aspect="AspectFill"
+                       HeightRequest="60" 
+                       WidthRequest="60" />
+                <Label Grid.Column="1" 
+                       Text="{Binding Name}"
+                       TextColor="Brown"
+                       FontAttributes="Bold" />
+                <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Location}"
+                       TextColor="RosyBrown"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+    </ContentPage.Resources>
+    <StackLayout x:Name="KeyboardView" 
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand">
+            <!--<Grid.RowDefinitions>
+                <RowDefinition Height="44" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>-->
+        <Label Text="CollectionView with simple layout"
+               FontAttributes="Bold" Grid.Row="0"
+               HorizontalOptions="Center" />
+        <CollectionView x:Name="collectionView" Grid.Row="1"
+                        ItemsSource="{Binding Animals}"
+                        ItemSizingStrategy="MeasureAllItems"
+                        IsGrouped="True">
+            <CollectionView.GroupHeaderTemplate>
+                        <DataTemplate>
+                        <Grid HorizontalOptions="FillAndExpand"
+                                      VerticalOptions="FillAndExpand"
+                                      BackgroundColor="#FFFFFFFF"
+                                      RowSpacing="0"
+                                      ColumnSpacing="0"
+                                      >
+                                    <Frame BackgroundColor="#FFEAEEF3"
+                                           CornerRadius="8" Padding="0" Margin="0,10,0,0"
+                                               HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                        <Frame BackgroundColor="#FFFFFFFF"
+                                               CornerRadius="8" Padding="10,4" Margin="1,1,1,2"
+                                               HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Label Margin="0" Padding="0"
+                                                HorizontalOptions="Center"
+                                                   VerticalOptions="Center"
+                                                   Style="{StaticResource MessageDateLabel}"
+                                                   Text="{Binding Name}" />
+                                        </Frame>
+                                    </Frame>
+                                </Grid>
+                      </DataTemplate>
+                    </CollectionView.GroupHeaderTemplate>
+            <CollectionView.ItemTemplate>
+                <chatControls:AnimalTemplateSelector
+                    InvalidTemplate="{StaticResource AsianAnimalTemplate}"
+                    ValidTemplate="{StaticResource AfricaAnimalTemplate}" />
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

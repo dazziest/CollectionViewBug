@@ -1,8 +1,8 @@
 ﻿namespace DataTemplates.Controls.Chats;
 
-public partial class EventMessage : ContentView
+public partial class MessageText : ContentView
 {
-	public EventMessage()
+	public MessageText()
 	{
 		InitializeComponent();
 	}
